@@ -1,84 +1,482 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>我的專屬相簿</title>
-    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+
+    <!-- LINE LIFF SDK -->
+    <script
+        charset="utf-8"
+        src="https://static.line-scdn.net/liff/edge/2/sdk.js">
+    </script>
+
+
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f5f5f5; padding: 20px; }
-        .box { background: white; padding: 20px; border-radius: 12px; max-width: 400px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
-        h3 { text-align: center; color: #06C755; margin-top: 0; }
-        .history-title { font-weight: bold; margin-bottom: 10px; color: #333; font-size: 15px; }
-        .gallery { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; min-height: 50px; }
-        .gallery img { width: 100%; height: auto; object-fit: contain; border-radius: 6px; border: 1px solid #ddd; }
-        input[type="file"] { width: 100%; box-sizing: border-box; padding: 10px; background: #fafafa; border: 1px dashed #ccc; border-radius: 6px; }
-        button { width: 100%; box-sizing: border-box; margin-top: 15px; padding: 12px; background: #06C755; color: white; border: none; font-weight: bold; font-size: 16px; border-radius: 6px; cursor: pointer; }
-        button:disabled { background: #999; }
+
+        body {
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                sans-serif;
+
+            background: #f5f5f5;
+
+            padding: 20px;
+        }
+
+
+        .box {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            max-width: 400px;
+
+            margin: 0 auto;
+
+            box-shadow:
+                0 4px 10px
+                rgba(0,0,0,0.08);
+        }
+
+
+        h3 {
+
+            text-align: center;
+
+            color: #06C755;
+
+            margin-top: 0;
+        }
+
+
+        .history-title {
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+            color: #333;
+
+            font-size: 15px;
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-top: 12px;
+
+            margin-bottom: 5px;
+
+            color: #333;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="date"] {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 10px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+
+            background: #fff;
+        }
+
+
+        input[type="file"] {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 10px;
+
+            background: #fafafa;
+
+            border: 1px dashed #ccc;
+
+            border-radius: 6px;
+        }
+
+
+        button {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            background: #06C755;
+
+            color: white;
+
+            border: none;
+
+            font-weight: bold;
+
+            font-size: 16px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+        }
+
+
+        button:disabled {
+
+            background: #999;
+        }
+
+
+        .gallery {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            min-height: 50px;
+        }
+
+
+        .gallery img {
+
+            width: 85px;
+
+            height: 85px;
+
+            object-fit: contain;
+
+            background: #f5f5f5;
+
+            border-radius: 6px;
+
+            border: 1px solid #ddd;
+        }
+
+
+        .status {
+
+            text-align: center;
+
+            color: #666;
+
+            font-size: 14px;
+
+            margin-top: 10px;
+        }
+
     </style>
+
 </head>
+
+
 <body>
 
+
 <div class="box">
-    <h3>📸 您的款式相簿</h3>
-    
-    <div class="history-title">您過去上傳的照片：</div>
-    <div id="gallery" class="gallery">正在讀取 LINE 身份中...</div>
-    
-    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-    
-    <div class="history-title">新增參考照片：</div>
-    <input type="file" id="fileInput" accept="image/*">
-    <button id="uploadBtn" onclick="uploadPhoto()">確認上傳照片</button>
+
+
+    <h3>
+        📸 您的款式相簿
+    </h3>
+
+
+    <!-- ==============================
+         客戶資料
+    =============================== -->
+
+    <div class="history-title">
+        客戶資料
+    </div>
+
+
+    <label for="customerName">
+        姓名
+    </label>
+
+    <input
+        type="text"
+        id="customerName"
+        placeholder="請輸入姓名"
+    >
+
+
+    <label for="phone">
+        電話
+    </label>
+
+    <input
+        type="tel"
+        id="phone"
+        placeholder="請輸入電話"
+    >
+
+
+    <label for="address">
+        地址
+    </label>
+
+    <input
+        type="text"
+        id="address"
+        placeholder="請輸入地址"
+    >
+
+
+    <label for="model">
+        機型
+    </label>
+
+    <input
+        type="text"
+        id="model"
+        placeholder="請輸入機型"
+    >
+
+
+    <label for="installDate">
+        安裝日期
+    </label>
+
+    <input
+        type="date"
+        id="installDate"
+    >
+
+
+    <button
+        id="saveCustomerBtn"
+        onclick="saveCustomer()"
+    >
+        儲存客戶資料
+    </button>
+
+
+    <hr
+        style="
+            border:0;
+            border-top:1px solid #eee;
+            margin:20px 0;
+        "
+    >
+
+
+    <!-- ==============================
+         歷史照片
+    =============================== -->
+
+    <div class="history-title">
+        您過去上傳的照片：
+    </div>
+
+
+    <div
+        id="gallery"
+        class="gallery"
+    >
+        正在讀取 LINE 身份中...
+    </div>
+
+
+    <hr
+        style="
+            border:0;
+            border-top:1px solid #eee;
+            margin:20px 0;
+        "
+    >
+
+
+    <!-- ==============================
+         上傳照片
+    =============================== -->
+
+    <div class="history-title">
+        新增參考照片：
+    </div>
+
+
+    <input
+        type="file"
+        id="fileInput"
+        accept="image/*"
+    >
+
+
+    <button
+        id="uploadBtn"
+        onclick="uploadPhoto()"
+    >
+        確認上傳照片
+    </button>
+
+
+    <div
+        id="status"
+        class="status">
+    </div>
+
+
 </div>
 
-<script>
-    // ⚠️ 1. 請在此填入您的 Google Apps Script 網頁應用程式網址 (結尾必須是 /exec)
-    const GOOGLE_API_URL = "https://script.google.com/macros/s/AKfycbx-JA2ssZD6FQrVArpG6COxzZPI4-_O6Rd1bqN70MdXKMiKFQhJNleUKslqzdJpYSfL/exec"; 
-    // ⚠️ 2. 請在此填入您的 LINE LIFF ID
-    const MY_LIFF_ID = "2011256691-2xjeJiKc"; 
-    
-    let user_id = "";
 
-    // 初始化 LINE LIFF 並強制登入
+<script>
+
+
+// =====================================================
+// 請修改這兩個設定
+// =====================================================
+
+const GOOGLE_API_URL =
+    "https://script.google.com/macros/s/AKfycbwsi-SWa-LZ_fc7gEjtNxkOSg-ZrkigDxol2SxfYD058epCl81ToMeAC4iXCTXAYFSb9Q/exec";
+
+
+const MY_LIFF_ID =
+    "2011256691-2xjeJiKc";
+
+
+// =====================================================
+// LINE User ID
+// =====================================================
+
+let user_id = "";
+
+
+// =====================================================
+// 初始化 LIFF
+// =====================================================
+
 async function initLIFF() {
-    const gallery = document.getElementById("gallery");
+
+    const gallery =
+        document.getElementById("gallery");
+
 
     try {
-        gallery.innerText = "正在連線 LINE...";
+
+        gallery.innerText =
+            "正在連線 LINE...";
+
 
         await liff.init({
+
             liffId: MY_LIFF_ID
+
         });
 
+
+        console.log(
+            "LIFF initialized"
+        );
+
+
+        // 尚未登入
         if (!liff.isLoggedIn()) {
-            gallery.innerText = "正在開啟 LINE 登入...";
+
+            gallery.innerText =
+                "正在開啟 LINE 登入...";
+
 
             liff.login({
-                redirectUri: window.location.href
+
+                redirectUri:
+                    window.location.href
+
             });
 
             return;
         }
 
-        const profile = await liff.getProfile();
 
-        console.log("LINE Profile:", profile);
+        // 取得 LINE Profile
+        const profile =
+            await liff.getProfile();
 
-        if (!profile || !profile.userId) {
-            throw new Error("無法取得 LINE User ID");
+
+        console.log(
+            "LINE Profile:",
+            profile
+        );
+
+
+        if (
+            !profile ||
+            !profile.userId
+        ) {
+
+            throw new Error(
+                "無法取得 LINE User ID"
+            );
         }
 
-        user_id = profile.userId;
 
-        console.log("LINE User ID:", user_id);
+        user_id =
+            profile.userId;
 
-        gallery.innerText = "正在讀取您的歷史照片...";
 
-        fetchHistoryPhotos(user_id);
+        console.log(
+            "LINE User ID:",
+            user_id
+        );
+
+
+        gallery.innerText =
+            "正在讀取您的資料...";
+
+
+        // 同時讀取：
+        // 客戶資料
+        // 歷史照片
+
+        await loadCustomer();
+
+        await fetchHistoryPhotos(
+            user_id
+        );
+
 
     } catch (error) {
-        console.error("LIFF Error:", error);
+
+        console.error(
+            "LIFF Error:",
+            error
+        );
+
 
         gallery.innerText =
             "LINE 身份讀取失敗：" +
@@ -86,84 +484,535 @@ async function initLIFF() {
     }
 }
 
+
+
+// =====================================================
+// 讀取客戶資料
+// =====================================================
+
+async function loadCustomer() {
+
+    try {
+
+        const response =
+            await fetch(
+
+                GOOGLE_API_URL +
+                "?action=getCustomer&userId=" +
+                encodeURIComponent(user_id)
+
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Customer:",
+            data
+        );
+
+
+        if (
+            data.status === "success" &&
+            data.customer
+        ) {
+
+            document.getElementById(
+                "customerName"
+            ).value =
+                data.customer.name || "";
+
+
+            document.getElementById(
+                "phone"
+            ).value =
+                data.customer.phone || "";
+
+
+            document.getElementById(
+                "address"
+            ).value =
+                data.customer.address || "";
+
+
+            document.getElementById(
+                "model"
+            ).value =
+                data.customer.model || "";
+
+
+            document.getElementById(
+                "installDate"
+            ).value =
+                data.customer.installDate || "";
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "載入客戶資料失敗:",
+            error
+        );
+    }
+}
+
+
+
+// =====================================================
+// 儲存客戶資料
+// =====================================================
+
+async function saveCustomer() {
+
+    if (!user_id) {
+
+        alert(
+            "尚未取得 LINE 身份，請重新整理。"
+        );
+
+        return;
+    }
+
+
+    const name =
+        document.getElementById(
+            "customerName"
+        ).value.trim();
+
+
+    const phone =
+        document.getElementById(
+            "phone"
+        ).value.trim();
+
+
+    const address =
+        document.getElementById(
+            "address"
+        ).value.trim();
+
+
+    const model =
+        document.getElementById(
+            "model"
+        ).value.trim();
+
+
+    const installDate =
+        document.getElementById(
+            "installDate"
+        ).value;
+
+
+    if (!name) {
+
+        alert("請輸入姓名");
+
+        return;
+    }
+
+
+    const btn =
+        document.getElementById(
+            "saveCustomerBtn"
+        );
+
+
+    btn.disabled = true;
+
+    btn.innerText =
+        "儲存中...";
+
+
+    try {
+
+        const payload = {
+
+            action: "saveCustomer",
+
+            userId: user_id,
+
+            name: name,
+
+            phone: phone,
+
+            address: address,
+
+            model: model,
+
+            installDate: installDate
+        };
+
+
+        const response =
+            await fetch(
+
+                GOOGLE_API_URL,
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+
+                    },
+
+                    body:
+                        JSON.stringify(payload)
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            data.status === "success"
+        ) {
+
+            alert(
+                "客戶資料已成功儲存！"
+            );
+
+        } else {
+
+            alert(
+                "儲存失敗：" +
+                data.message
+            );
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "無法連線到伺服器"
+        );
+
+    } finally {
+
+        btn.disabled = false;
+
+        btn.innerText =
+            "儲存客戶資料";
+    }
+}
+
+
+
+// =====================================================
+// 讀取歷史照片
+// =====================================================
+
+async function fetchHistoryPhotos(uid) {
+
+    const gallery =
+        document.getElementById(
+            "gallery"
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                GOOGLE_API_URL +
+                "?action=getPhotos&userId=" +
+                encodeURIComponent(uid)
+
+            );
+
+
+        const data =
+            await response.json();
+
+
+        gallery.innerHTML = "";
+
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            gallery.innerText =
+                "尚無歷史照片紀錄";
+
+            return;
+        }
+
+
+        data.forEach(
+            function(url) {
+
+                const img =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                img.src = url;
+
+
+                img.loading = "lazy";
+
+
+                gallery.appendChild(img);
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        gallery.innerText =
+            "無法載入雲端相簿紀錄";
+    }
+}
+
+
+
+// =====================================================
+// 上傳照片
+// =====================================================
+
+function uploadPhoto() {
+
+    const fileInput =
+        document.getElementById(
+            "fileInput"
+        );
+
+
+    if (
+        fileInput.files.length === 0
+    ) {
+
+        alert(
+            "請先選擇照片"
+        );
+
+        return;
+    }
+
+
+    if (!user_id) {
+
+        alert(
+            "尚未讀取到您的 LINE 帳號身份，請重新整理網頁"
+        );
+
+        return;
+    }
+
+
+    const file =
+        fileInput.files[0];
+
+
+    // 檢查圖片大小
+    // 這裡限制 10MB
+
+    if (
+        file.size >
+        10 * 1024 * 1024
+    ) {
+
+        alert(
+            "照片不能超過 10MB"
+        );
+
+        return;
+    }
+
+
+    const btn =
+        document.getElementById(
+            "uploadBtn"
+        );
+
+
+    btn.innerText =
+        "照片上傳中...";
+
+
+    btn.disabled = true;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.readAsDataURL(file);
+
+
+    reader.onload =
+        function() {
+
+            try {
+
+                const base64Parts =
+                    reader.result.split(",");
+
+
+                const base64String =
+                    base64Parts[1];
+
+
+                const payload = {
+
+                    action: "upload",
+
+                    userId: user_id,
+
+                    filename: file.name,
+
+                    mimeType: file.type,
+
+                    data: base64String
+
+                };
+
+
+                fetch(
+
+                    GOOGLE_API_URL,
+
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "text/plain;charset=utf-8"
+
+                        },
+
+                        body:
+                            JSON.stringify(
+                                payload
+                            )
+                    }
+
+                )
+
+                .then(
+                    response =>
+                        response.json()
+                )
+
+                .then(
+                    function(data) {
+
+                        if (
+                            data.status ===
+                            "success"
+                        ) {
+
+                            alert(
+                                "上傳成功！"
+                            );
+
+
+                            // 重新載入照片
+
+                            fetchHistoryPhotos(
+                                user_id
+                            );
+
+
+                            fileInput.value =
+                                "";
+
+
+                        } else {
+
+                            alert(
+                                "上傳失敗：" +
+                                data.message
+                            );
+                        }
+
+
+                        resetUploadButton();
+
+                    }
+                )
+
+                .catch(
+                    function(error) {
+
+                        console.error(
+                            error
+                        );
+
+
+                        alert(
+                            "照片上傳失敗，請確認網路及 GAS 部署設定。"
+                        );
+
+
+                        resetUploadButton();
+                    }
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    error
+                );
+
+                resetUploadButton();
+            }
+        };
+}
+
+
+
+// =====================================================
+// 重設上傳按鈕
+// =====================================================
+
+function resetUploadButton() {
+
+    const btn =
+        document.getElementById(
+            "uploadBtn"
+        );
+
+
+    btn.innerText =
+        "確認上傳照片";
+
+
+    btn.disabled = false;
+}
+
+
+
+// =====================================================
+// 啟動
+// =====================================================
+
 initLIFF();
 
-    // 撈取歷史紀錄 (GET)
-    function fetchHistoryPhotos(uid) {
-        fetch(`${GOOGLE_API_URL}?action=getPhotos&userId=${uid}`)
-            .then(res => res.json())
-            .then(data => {
-                const gallery = document.getElementById('gallery');
-                gallery.innerHTML = "";
-                if (!data || data.length === 0) {
-                    gallery.innerText = "尚無歷史照片紀錄";
-                } else {
-                    data.forEach(url => {
-                        const img = document.createElement('img');
-                        img.src = url;
-                        gallery.appendChild(img);
-                    });
-                }
-            }).catch(err => {
-                document.getElementById('gallery').innerText = "無法載入雲端相簿紀錄";
-            });
-    }
 
-    // 上傳新照片 (POST)
-    function uploadPhoto() {
-        const fileInput = document.getElementById('fileInput');
-        if (fileInput.files.length === 0) return alert("請先選擇照片");
-        if (!user_id) return alert("尚未讀取到您的 LINE 帳號身份，請重新整理網頁");
-
-        const btn = document.getElementById('uploadBtn');
-        btn.innerText = "照片永久保存中...請勿關閉";
-        btn.disabled = true;
-
-        const file = fileInput.files[0]; // ✨ 核心修正：明確抓取第一個檔案項目
-        const reader = new FileReader();
-        
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-            // ✨ 核心修正：將完整的 Base64 字串正確分離出純資料內容
-            const base64Parts = reader.result.split(',');
-            const base64String = base64Parts[1]; 
-            
-            const payload = {
-                action: "upload",
-                userId: user_id,
-                filename: file.name,
-                mimeType: file.type,
-                data: base64String
-            };
-
-            // ✨ 將 fetch 動作嚴格鎖在 reader.onload 裡面執行，確保資料轉換完畢才發射
-            fetch(GOOGLE_API_URL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8"
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(res => {
-                if (res.status === "success") {
-                    alert("上傳成功！照片已永久保存。");
-                    location.reload();
-                } else {
-                    alert("後端儲存失敗原因：" + res.message);
-                    resetButton();
-                }
-            }).catch(err => {
-                alert("網路傳送被攔截，請確認後端部署設定是否為「所有人」");
-                resetButton();
-            });
-        };
-        
-        function resetButton() {
-            btn.innerText = "確認上傳照片";
-            btn.disabled = false;
-        }
-    }
 </script>
+
 </body>
+
 </html>
