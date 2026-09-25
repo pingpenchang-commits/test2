@@ -41,20 +41,52 @@
     let user_id = "";
 
     // 初始化 LINE LIFF 並強制登入
-    liff.init({ liffId: MY_LIFF_ID }).then(() => {
+async function initLIFF() {
+    const gallery = document.getElementById("gallery");
+
+    try {
+        gallery.innerText = "正在連線 LINE...";
+
+        await liff.init({
+            liffId: MY_LIFF_ID
+        });
+
         if (!liff.isLoggedIn()) {
-            liff.login(); // 強制跳出 LINE 官方授權視窗
-        } else {
-            liff.getProfile().then(profile => {
-                user_id = profile.userId; // 成功抓到客人的 LINEID
-                fetchHistoryPhotos(user_id);
-            }).catch(err => {
-                document.getElementById('gallery').innerText = "抓取 LINE 帳號資料失敗，請確認 Scopes 勾選";
+            gallery.innerText = "正在開啟 LINE 登入...";
+
+            liff.login({
+                redirectUri: window.location.href
             });
+
+            return;
         }
-    }).catch(err => {
-        document.getElementById('gallery').innerText = "LIFF 初始化失敗，請檢查您的 LIFF ID 是否輸入正確";
-    });
+
+        const profile = await liff.getProfile();
+
+        console.log("LINE Profile:", profile);
+
+        if (!profile || !profile.userId) {
+            throw new Error("無法取得 LINE User ID");
+        }
+
+        user_id = profile.userId;
+
+        console.log("LINE User ID:", user_id);
+
+        gallery.innerText = "正在讀取您的歷史照片...";
+
+        fetchHistoryPhotos(user_id);
+
+    } catch (error) {
+        console.error("LIFF Error:", error);
+
+        gallery.innerText =
+            "LINE 身份讀取失敗：" +
+            (error.message || error);
+    }
+}
+
+initLIFF();
 
     // 撈取歷史紀錄 (GET)
     function fetchHistoryPhotos(uid) {
