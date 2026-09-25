@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>歷史照片紀錄與上傳</title>
+    <title>我的專屬相簿</title>
     <script src="https://line-scdn.net"></script>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f5f5f5; padding: 20px; }
@@ -13,59 +13,57 @@
         .gallery { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; min-height: 50px; }
         .gallery img { width: 85px; height: 85px; object-fit: cover; border-radius: 6px; border: 1px solid #ddd; }
         input[type="file"] { width: 100%; box-sizing: border-box; padding: 10px; background: #fafafa; border: 1px dashed #ccc; border-radius: 6px; }
-        button { width: 100%; box-sizing: border-box; margin-top: 15px; padding: 12px; background: #06C755; color: white; border: none; font-weight: bold; font-size: 16px; border-radius: 6px; cursor: pointer; transition: 0.3s; }
+        button { width: 100%; box-sizing: border-box; margin-top: 15px; padding: 12px; background: #06C755; color: white; border: none; font-weight: bold; font-size: 16px; border-radius: 6px; cursor: pointer; }
         button:disabled { background: #999; }
     </style>
 </head>
 <body>
 
 <div class="box">
-    <h3>📸 您的專屬款式相簿</h3>
+    <h3>📸 您的款式相簿</h3>
     
-    <!-- 歷史紀錄展示區 -->
     <div class="history-title">您過去上傳的照片：</div>
-    <div id="gallery" class="gallery">正在讀取舊照片...</div>
+    <div id="gallery" class="gallery">正在讀取 LINE 身份中...</div>
     
     <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
     
-    <!-- 上傳新照片區 -->
     <div class="history-title">新增參考照片：</div>
     <input type="file" id="fileInput" accept="image/*">
     <button id="uploadBtn" onclick="uploadPhoto()">確認上傳照片</button>
 </div>
 
 <script>
-    // ⚠️ 請務必更換成您在 Google Apps Script 部署得到的 Web App 網址
+    // ⚠️ 1. 請在此填入您的 Google Apps Script 網頁應用程式網址 (結尾必須是 /exec)
     const GOOGLE_API_URL = "https://script.google.com/macros/s/AKfycbx-JA2ssZD6FQrVArpG6COxzZPI4-_O6Rd1bqN70MdXKMiKFQhJNleUKslqzdJpYSfL/exec"; 
-    // ⚠️ 請務必更換成您的 LINE LIFF ID
+    // ⚠️ 2. 請在此填入您的 LINE LIFF ID
     const MY_LIFF_ID = "2011256691-2xjeJiKc"; 
     
     let user_id = "";
 
-    // 初始化 LINE LIFF
+    // 初始化 LINE LIFF 並強制登入
     liff.init({ liffId: MY_LIFF_ID }).then(() => {
         if (!liff.isLoggedIn()) {
-            liff.login();
+            liff.login(); // 強制跳出 LINE 官方授權視窗
         } else {
             liff.getProfile().then(profile => {
-                user_id = profile.userId;
-                fetchHistoryPhotos(user_id); // 載入舊照片
+                user_id = profile.userId; // 成功抓到客人的 LINEID
+                fetchHistoryPhotos(user_id);
             }).catch(err => {
-                document.getElementById('gallery').innerText = "無法載入 LINE 身份";
+                document.getElementById('gallery').innerText = "抓取 LINE 帳號資料失敗，請確認 Scopes 勾選";
             });
         }
     }).catch(err => {
-        document.getElementById('gallery').innerText = "LIFF 初始化失敗，請檢查 ID";
+        document.getElementById('gallery').innerText = "LIFF 初始化失敗，請檢查您的 LIFF ID 是否輸入正確";
     });
 
-    // 向 Google 讀取歷史照片 (GET)
+    // 撈取歷史紀錄 (GET)
     function fetchHistoryPhotos(uid) {
         fetch(`${GOOGLE_API_URL}?action=getPhotos&userId=${uid}`)
             .then(res => res.json())
             .then(data => {
                 const gallery = document.getElementById('gallery');
                 gallery.innerHTML = "";
-                if(!data || data.length === 0) {
+                if (!data || data.length === 0) {
                     gallery.innerText = "尚無歷史照片紀錄";
                 } else {
                     data.forEach(url => {
@@ -75,25 +73,26 @@
                     });
                 }
             }).catch(err => {
-                document.getElementById('gallery').innerText = "讀取紀錄失敗，請確認 API 網址";
+                document.getElementById('gallery').innerText = "無法載入雲端相簿紀錄";
             });
     }
 
-    // 上傳照片到 Google (POST)
+    // 上傳新照片 (POST)
     function uploadPhoto() {
         const fileInput = document.getElementById('fileInput');
-        if(fileInput.files.length === 0) return alert("請先選擇照片");
-        
+        if (fileInput.files.length === 0) return alert("請先選擇照片");
+        if (!user_id) return alert("尚未讀取到您的 LINE 帳號身份，請重新整理網頁");
+
         const btn = document.getElementById('uploadBtn');
         btn.innerText = "照片永久保存中...請勿關閉";
         btn.disabled = true;
 
-        const file = fileInput.files[0]; // ✨ 修正：精準指定抓取陣列第一個檔案
+        const file = fileInput.files[0]; // ✨ 核心修正：明確抓取第一個檔案項目
         const reader = new FileReader();
         
         reader.readAsDataURL(file);
         reader.onload = function () {
-            // ✨ 修正：精準分離，只留下純 Base64 字串編碼內容
+            // ✨ 核心修正：將完整的 Base64 字串正確分離出純資料內容
             const base64Parts = reader.result.split(',');
             const base64String = base64Parts[1]; 
             
@@ -105,7 +104,7 @@
                 data: base64String
             };
 
-            // ✨ 修正：改用 text/plain 傳送，完全繞過瀏覽器對 JSON 的 CORS 跨域檢查
+            // ✨ 將 fetch 動作嚴格鎖在 reader.onload 裡面執行，確保資料轉換完畢才發射
             fetch(GOOGLE_API_URL, {
                 method: "POST",
                 headers: {
@@ -117,13 +116,13 @@
             .then(res => {
                 if (res.status === "success") {
                     alert("上傳成功！照片已永久保存。");
-                    location.reload(); // 刷新網頁，重新撈取新照片
+                    location.reload();
                 } else {
-                    alert("後端儲存失敗：" + res.message);
+                    alert("後端儲存失敗原因：" + res.message);
                     resetButton();
                 }
             }).catch(err => {
-                alert("上傳失敗，請檢查 Google 後端部署設定是否為「所有人」");
+                alert("網路傳送被攔截，請確認後端部署設定是否為「所有人」");
                 resetButton();
             });
         };
