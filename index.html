@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歷史照片紀錄與上傳</title>
+    <script src="https://line-scdn.net"></script>
+    <style>
+        body { font-family: sans-serif; background: #f5f5f5; padding: 20px; }
+        .box { background: white; padding: 20px; border-radius: 8px; max-width: 400px; margin: 0 auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .history-title { font-weight: bold; margin-bottom: 10px; color: #333; }
+        .gallery { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        .gallery img { width: 80px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; }
+        input, button { width: 100%; box-sizing: border-box; margin-top: 10px; padding: 10px; }
+        button { background: #06C755; color: white; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h3>📸 您的款式相簿</h3>
+    
+    <!-- 歷史紀錄展示區 -->
+    <div class="history-title">歷史照片紀錄：</div>
+    <div id="gallery" class="gallery">正在讀取舊照片...</div>
+    
+    <hr>
+    
+    <!-- 上傳新照片區 -->
+    <div class="history-title" style="margin-top:15px;">新增參考照片：</div>
+    <input type="file" id="fileInput" accept="image/*">
+    <button id="uploadBtn" onclick="uploadPhoto()">確認上傳</button>
+</div>
+
+<script>
+    // ⚠️ 請替換為您在 Google 部署得到的 Web App 網址
+    const GOOGLE_API_URL = "您的_GOOGLE_APPS_SCRIPT_網址"; 
+    let user_id = "";
+
+    // 初始化 LINE LIFF
+    liff.init({ liffId: "您的_LIFF_ID" }).then(() => {
+        if (!liff.isLoggedIn()) {
+            liff.login();
+        } else {
+            liff.getProfile().then(profile => {
+                user_id = profile.userId;
+                fetchHistoryPhotos(user_id); // 拿著 UserID 去跟 Google 要歷史照片
+            });
+        }
+    });
+
+    // 向 Google 撈歷史照片
+    function fetchHistoryPhotos(uid) {
+        fetch(`${GOOGLE_API_URL}?action=getPhotos&userId=${uid}`)
+            .then(res => res.json())
+            .then(data => {
+                const gallery = document.getElementById('gallery');
+                gallery.innerHTML = "";
+                if(data.length === 0) {
+                    gallery.innerText = "尚無歷史照片紀錄";
+                } else {
+                    data.forEach(url => {
+                        const img = document.createElement('img');
+                        img.src = url;
+                        gallery.appendChild(img);
+                    });
+                }
+            });
+    }
+
+    // 上傳照片到 Google
+    function uploadPhoto() {
+        const fileInput = document.getElementById('fileInput');
+        if(fileInput.files.length === 0) return alert("請先選擇照片");
+        
+        const btn = document.getElementById('uploadBtn');
+        btn.innerText = "上傳中...請稍候";
+        btn.disabled = true;
+
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            const rawLog = reader.result.split(',')[1]; // 轉成 Base64
+            
+            const payload = {
+                action: "upload",
+                userId: user_id,
+                filename: file.name,
+                mimeType: file.type,
+                data: rawLog
+            };
+
+            fetch(GOOGLE_API_URL, {
+                method: "POST",
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(res => {
+                alert("上傳成功！照片已永久保存。");
+                location.reload(); // 重新整理網頁重新抓取歷史照片
+            }).catch(err => {
+                alert("上傳失敗，請再試一次");
+                btn.innerText = "確認上傳";
+                btn.disabled = false;
+            });
+        };
+    }
+</script>
+</body>
+</html>
