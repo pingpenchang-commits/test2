@@ -3,369 +3,261 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-    <title>三久太陽能</title>
+<title>三久太陽能</title>
 
+<script
+  charset="utf-8"
+  src="https://static.line-scdn.net/liff/edge/2/sdk.js">
+</script>
 
-    <!-- LINE LIFF SDK -->
-    <script
-        charset="utf-8"
-        src="https://static.line-scdn.net/liff/edge/2/sdk.js">
-    </script>
 
+<style>
 
-    <style>
+* {
+  box-sizing: border-box;
+}
 
-        /* ==========================================
-           基本頁面
-        ========================================== */
+body {
 
-        body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
 
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                sans-serif;
+  background: #f5f5f5;
 
-            background: #f5f5f5;
+  padding: 20px;
 
-            padding: 20px;
+  margin: 0;
+}
 
-        }
 
+.box {
 
-        /* ==========================================
-           主容器
-        ========================================== */
+  background: white;
 
-        .box {
+  padding: 20px;
 
-            background: white;
+  border-radius: 12px;
 
-            padding: 20px;
+  max-width: 500px;
 
-            border-radius: 12px;
+  margin: 0 auto;
 
-            max-width: 400px;
+  box-shadow:
+    0 4px 10px
+    rgba(0,0,0,0.08);
+}
 
-            margin: 0 auto;
 
-            box-shadow:
-                0 4px 10px
-                rgba(0,0,0,0.08);
+.logo {
 
-        }
+  text-align: center;
 
+  margin-bottom: 20px;
+}
 
-        /* ==========================================
-           Logo
-        ========================================== */
 
-        .logo {
+.logo img {
 
-            text-align: center;
+  width: 100%;
 
-            margin-bottom: 20px;
+  height: auto;
+}
 
-        }
 
+.section-title {
 
-        .logo img {
+  font-weight: bold;
 
-            width: 100%;
+  margin-bottom: 10px;
 
-            height: auto;
+  color: #333;
 
-        }
+  font-size: 17px;
+}
 
 
-        /* ==========================================
-           標題
-        ========================================== */
+label {
 
-        .history-title {
+  display: block;
 
-            font-weight: bold;
+  margin-top: 12px;
 
-            margin-bottom: 10px;
+  margin-bottom: 5px;
 
-            color: #333;
+  color: #333;
 
-            font-size: 15px;
+  font-size: 14px;
 
-        }
+  font-weight: bold;
+}
 
 
-        /* ==========================================
-           表單 Label
-        ========================================== */
+input,
+textarea {
 
-        label {
+  width: 100%;
 
-            display: block;
+  padding: 11px;
 
-            margin-top: 12px;
+  border:
+    1px solid #ddd;
 
-            margin-bottom: 5px;
+  border-radius: 6px;
 
-            color: #333;
+  font-size: 15px;
 
-            font-size: 14px;
+  background: #fff;
+}
 
-            font-weight: bold;
 
-        }
+textarea {
 
+  min-height: 90px;
 
-        /* ==========================================
-           輸入框
-        ========================================== */
+  resize: vertical;
+}
 
-        input[type="text"],
-        input[type="tel"],
-        input[type="date"] {
 
-            width: 100%;
+input[type="file"] {
 
-            box-sizing: border-box;
+  padding: 10px;
 
-            padding: 10px;
+  background: #fafafa;
 
-            border: 1px solid #ddd;
+  border:
+    1px dashed #ccc;
+}
 
-            border-radius: 6px;
 
-            font-size: 15px;
+button {
 
-            background: #fff;
+  width: 100%;
 
-        }
+  margin-top: 15px;
 
+  padding: 12px;
 
-        /* ==========================================
-           檔案選擇
-        ========================================== */
+  background: #003C9D;
 
-        input[type="file"] {
+  color: white;
 
-            width: 100%;
+  border: none;
 
-            box-sizing: border-box;
+  font-weight: bold;
 
-            padding: 10px;
+  font-size: 16px;
 
-            background: #fafafa;
+  border-radius: 6px;
 
-            border: 1px dashed #ccc;
+  cursor: pointer;
+}
 
-            border-radius: 6px;
 
-        }
+button:disabled {
 
+  background: #999;
 
-        /* ==========================================
-           按鈕
-        ========================================== */
+}
 
-        button {
 
-            width: 100%;
+hr {
 
-            box-sizing: border-box;
+  border: 0;
 
-            margin-top: 15px;
+  border-top:
+    1px solid #eee;
 
-            padding: 12px;
+  margin: 25px 0;
+}
 
-            background: #003C9D;
 
-            color: white;
+.gallery {
 
-            border: none;
+  display: flex;
 
-            font-weight: bold;
+  flex-wrap: wrap;
 
-            font-size: 16px;
+  gap: 10px;
 
-            border-radius: 6px;
+  margin-bottom: 10px;
+}
 
-            cursor: pointer;
 
-        }
+.gallery img {
 
+  width: 100%;
 
-        button:disabled {
+  border-radius: 6px;
 
-            background: #999;
+  border:
+    1px solid #ddd;
+}
 
-            cursor: not-allowed;
 
-        }
+.repair-card {
 
+  background: #f8f9fb;
 
-        /* ==========================================
-           分隔線
-        ========================================== */
+  border:
+    1px solid #e5e5e5;
 
-        .divider {
+  border-radius: 8px;
 
-            border: 0;
+  padding: 12px;
 
-            border-top: 1px solid #eee;
+  margin-bottom: 10px;
+}
 
-            margin: 20px 0;
 
-        }
+.repair-date {
 
+  color: #003C9D;
 
-        /* ==========================================
-           照片區
-        ========================================== */
+  font-weight: bold;
 
-        .gallery {
+  margin-bottom: 6px;
+}
 
-            display: flex;
 
-            flex-wrap: wrap;
+.repair-item {
 
-            gap: 10px;
+  font-weight: bold;
 
-            margin-bottom: 20px;
+  margin-bottom: 5px;
+}
 
-            min-height: 50px;
 
-        }
+.repair-content {
 
+  color: #555;
 
-        .gallery img {
+  font-size: 14px;
 
-            width: 100%;
+  white-space: pre-wrap;
+}
 
-            height: auto;
 
-            object-fit: contain;
+.status {
 
-            background: #f5f5f5;
+  text-align: center;
 
-            border-radius: 6px;
+  color: #666;
 
-            border: 1px solid #ddd;
+  font-size: 14px;
 
-        }
+  margin-top: 10px;
+}
 
-
-        /* ==========================================
-           狀態文字
-        ========================================== */
-
-        .status {
-
-            text-align: center;
-
-            color: #666;
-
-            font-size: 14px;
-
-            margin-top: 10px;
-
-        }
-
-
-        /* ==========================================
-           維修歷史
-        ========================================== */
-
-        #repairHistory {
-
-            margin-top: 10px;
-
-        }
-
-
-        .repair-card {
-
-            background: #f8f9fa;
-
-            border: 1px solid #e5e5e5;
-
-            border-radius: 8px;
-
-            padding: 12px;
-
-            margin-bottom: 10px;
-
-        }
-
-
-        .repair-date {
-
-            color: #003C9D;
-
-            font-weight: bold;
-
-            font-size: 15px;
-
-            margin-bottom: 8px;
-
-        }
-
-
-        .repair-row {
-
-            margin-top: 6px;
-
-            font-size: 14px;
-
-            color: #444;
-
-            line-height: 1.5;
-
-        }
-
-
-        .repair-label {
-
-            font-weight: bold;
-
-            color: #333;
-
-        }
-
-
-        .no-repair {
-
-            color: #888;
-
-            text-align: center;
-
-            padding: 15px 5px;
-
-            font-size: 14px;
-
-        }
-
-
-        /* ==========================================
-           維修表單
-        ========================================== */
-
-        .repair-form {
-
-            margin-top: 20px;
-
-            padding-top: 15px;
-
-            border-top: 1px solid #eee;
-
-        }
-
-    </style>
+</style>
 
 </head>
 
@@ -376,278 +268,240 @@
 <div class="box">
 
 
-    <!-- ==========================================
-         Logo
-    ========================================== -->
+  <div class="logo">
 
-    <div class="logo">
-
-        <img
-            src="https://i.ibb.co/chRL8DY0/logo.jpg"
-            alt="三久太陽能"
-        >
-
-    </div>
-
-
-
-    <!-- ==========================================
-         客戶資料
-    ========================================== -->
-
-    <div class="history-title">
-
-        客戶資料
-
-    </div>
-
-
-    <label for="customerName">
-
-        姓名
-
-    </label>
-
-
-    <input
-        type="text"
-        id="customerName"
-        placeholder="請輸入姓名"
+    <img
+      src="https://i.ibb.co/chRL8DY0/logo.jpg"
+      alt="Logo"
     >
 
+  </div>
 
-    <label for="phone">
 
-        電話
+  <!-- ==================================================
+       客戶資料
+  =================================================== -->
 
-    </label>
+  <div class="section-title">
+    客戶資料
+  </div>
 
 
-    <input
-        type="tel"
-        id="phone"
-        placeholder="請輸入電話"
-    >
+  <label>
+    姓名
+  </label>
 
+  <input
+    type="text"
+    id="customerName"
+    placeholder="請輸入姓名"
+  >
 
-    <label for="address">
 
-        地址
+  <label>
+    電話
+  </label>
 
-    </label>
+  <input
+    type="tel"
+    id="phone"
+    placeholder="請輸入電話"
+  >
 
 
-    <input
-        type="text"
-        id="address"
-        placeholder="請輸入地址"
-    >
+  <label>
+    地址
+  </label>
 
+  <input
+    type="text"
+    id="address"
+    placeholder="請輸入地址"
+  >
 
-    <label for="model">
 
-        機型
+  <label>
+    機型
+  </label>
 
-    </label>
+  <input
+    type="text"
+    id="model"
+    placeholder="請輸入機型"
+  >
 
 
-    <input
-        type="text"
-        id="model"
-        placeholder="請輸入機型"
-    >
+  <label>
+    安裝日期
+  </label>
 
+  <input
+    type="date"
+    id="installDate"
+  >
 
-    <label for="installDate">
 
-        安裝日期
+  <button
+    id="saveCustomerBtn"
+    onclick="saveCustomer()"
+  >
+    儲存客戶資料
+  </button>
 
-    </label>
 
+  <hr>
 
-    <input
-        type="date"
-        id="installDate"
-    >
 
+  <!-- ==================================================
+       歷史照片
+  =================================================== -->
 
-    <button
-        id="saveCustomerBtn"
-        onclick="saveCustomer()"
-    >
+  <div class="section-title">
+    歷史照片
+  </div>
 
-        儲存客戶資料
 
-    </button>
+  <div
+    id="gallery"
+    class="gallery"
+  >
+    正在讀取 LINE 身份中...
+  </div>
 
 
+  <hr>
 
-    <hr class="divider">
 
+  <!-- ==================================================
+       上傳照片
+  =================================================== -->
 
+  <div class="section-title">
+    新增參考照片
+  </div>
 
-    <!-- ==========================================
-         維修歷史紀錄
-    ========================================== -->
 
-    <div class="history-title">
+  <input
+    type="file"
+    id="fileInput"
+    accept="image/*"
+  >
 
-        維修歷史紀錄
 
-    </div>
+  <button
+    id="uploadBtn"
+    onclick="uploadPhoto()"
+  >
+    確認上傳照片
+  </button>
 
 
-    <div id="repairHistory">
+  <hr>
 
-        正在讀取維修紀錄...
 
-    </div>
+  <!-- ==================================================
+       維修歷史
+  =================================================== -->
 
+  <div class="section-title">
+    維修歷史紀錄
+  </div>
 
 
-    <!-- ==========================================
-         新增維修紀錄
-    ========================================== -->
+  <div id="repairHistory">
 
-    <div class="repair-form">
+    正在讀取維修紀錄...
 
-        <div class="history-title">
+  </div>
 
-            新增維修紀錄
 
-        </div>
+  <hr>
 
 
-        <label for="repairDate">
+  <!-- ==================================================
+       新增維修紀錄
+  =================================================== -->
 
-            維修日期
+  <div class="section-title">
+    新增維修紀錄
+  </div>
 
-        </label>
 
+  <label>
+    維修日期
+  </label>
 
-        <input
-            type="date"
-            id="repairDate"
-        >
+  <input
+    type="date"
+    id="repairDate"
+  >
 
 
-        <label for="repairContent">
+  <label>
+    維修項目
+  </label>
 
-            維修內容
+  <input
+    type="text"
+    id="repairType"
+    placeholder="例如：熱水器漏水"
+  >
 
-        </label>
 
+  <label>
+    維修內容
+  </label>
 
-        <input
-            type="text"
-            id="repairContent"
-            placeholder="例如：更換集熱管、清洗水垢"
-        >
+  <textarea
+    id="repairDescription"
+    placeholder="請描述維修內容"
+  ></textarea>
 
 
-        <label for="technician">
+  <label>
+    技師
+  </label>
 
-            維修人員
+  <input
+    type="text"
+    id="repairTechnician"
+    placeholder="技師姓名"
+  >
 
-        </label>
 
+  <label>
+    費用
+  </label>
 
-        <input
-            type="text"
-            id="technician"
-            placeholder="請輸入維修人員"
-        >
+  <input
+    type="text"
+    id="repairCost"
+    placeholder="例如：1500"
+  >
 
 
-        <label for="repairNote">
+  <label>
+    備註
+  </label>
 
-            備註
+  <textarea
+    id="repairNote"
+    placeholder="其他備註"
+  ></textarea>
 
-        </label>
 
+  <button
+    id="repairBtn"
+    onclick="addRepair()"
+  >
+    新增維修紀錄
+  </button>
 
-        <input
-            type="text"
-            id="repairNote"
-            placeholder="請輸入備註"
-        >
 
-
-        <button
-            id="saveRepairBtn"
-            onclick="saveRepair()"
-        >
-
-            儲存維修紀錄
-
-        </button>
-
-    </div>
-
-
-
-    <hr class="divider">
-
-
-
-    <!-- ==========================================
-         歷史照片
-    ========================================== -->
-
-    <div class="history-title">
-
-        您過去上傳的照片：
-
-    </div>
-
-
-    <div
-        id="gallery"
-        class="gallery"
-    >
-
-        正在讀取 LINE 身份中...
-
-    </div>
-
-
-
-    <hr class="divider">
-
-
-
-    <!-- ==========================================
-         新增參考照片
-    ========================================== -->
-
-    <div class="history-title">
-
-        新增參考照片：
-
-    </div>
-
-
-    <input
-        type="file"
-        id="fileInput"
-        accept="image/*"
-    >
-
-
-    <button
-        id="uploadBtn"
-        onclick="uploadPhoto()"
-    >
-
-        確認上傳照片
-
-    </button>
-
-
-    <div
-        id="status"
-        class="status">
-    </div>
+  <div
+    id="status"
+    class="status"
+  ></div>
 
 
 </div>
@@ -657,1346 +511,962 @@
 <script>
 
 
-// =====================================================
-// Google Apps Script API
-// =====================================================
+// ======================================================
+// 設定
+// ======================================================
 
 const GOOGLE_API_URL =
-    "https://script.google.com/macros/s/AKfycbwsi-SWa-LZ_fc7gEjtNxkOSg-ZrkigDxol2SxfYD058epCl81ToMeAC4iXCTXAYFSb9Q/exec";
+  "https://script.google.com/macros/s/AKfycbwsi-SWa-LZ_fc7gEjtNxkOSg-ZrkigDxol2SxfYD058epCl81ToMeAC4iXCTXAYFSb9Q/exec";
 
-
-// =====================================================
-// LINE LIFF ID
-// =====================================================
 
 const MY_LIFF_ID =
-    "2011256691-2xjeJiKc";
+  "2011256691-2xjeJiKc";
 
 
-// =====================================================
+// ======================================================
 // LINE User ID
-// =====================================================
+// ======================================================
 
 let user_id = "";
 
 
-
-// =====================================================
+// ======================================================
 // 初始化 LIFF
-// =====================================================
+// ======================================================
 
 async function initLIFF() {
 
-    const gallery =
-        document.getElementById(
-            "gallery"
-        );
+  try {
+
+    document.getElementById(
+      "gallery"
+    ).innerText =
+      "正在連線 LINE...";
 
 
-    try {
+    await liff.init({
 
-        gallery.innerText =
-            "正在連線 LINE...";
+      liffId:
+        MY_LIFF_ID
 
-
-        await liff.init({
-
-            liffId:
-                MY_LIFF_ID
-
-        });
+    });
 
 
-        console.log(
-            "LIFF initialized"
-        );
+    if (!liff.isLoggedIn()) {
 
+      liff.login({
 
-        // ---------------------------------------------
-        // 尚未登入
-        // ---------------------------------------------
+        redirectUri:
+          window.location.href
 
-        if (!liff.isLoggedIn()) {
+      });
 
-            gallery.innerText =
-                "正在開啟 LINE 登入...";
-
-
-            liff.login({
-
-                redirectUri:
-                    window.location.href
-
-            });
-
-
-            return;
-
-        }
-
-
-        // ---------------------------------------------
-        // 取得 LINE Profile
-        // ---------------------------------------------
-
-        const profile =
-            await liff.getProfile();
-
-
-        console.log(
-            "LINE Profile:",
-            profile
-        );
-
-
-        if (
-            !profile ||
-            !profile.userId
-        ) {
-
-            throw new Error(
-                "無法取得 LINE User ID"
-            );
-
-        }
-
-
-        user_id =
-            profile.userId;
-
-
-        console.log(
-            "LINE User ID:",
-            user_id
-        );
-
-
-        gallery.innerText =
-            "正在讀取您的資料...";
-
-
-        // ---------------------------------------------
-        // 載入資料
-        // ---------------------------------------------
-
-        await loadCustomer();
-
-
-        await fetchRepairHistory();
-
-
-        await fetchHistoryPhotos(
-            user_id
-        );
-
-
-        // ---------------------------------------------
-        // 維修日期預設今天
-        // ---------------------------------------------
-
-        setTodayRepairDate();
-
-
-    } catch (error) {
-
-        console.error(
-            "LIFF Error:",
-            error
-        );
-
-
-        gallery.innerText =
-            "LINE 身份讀取失敗：" +
-            (
-                error.message ||
-                error
-            );
-
+      return;
     }
 
+
+    const profile =
+      await liff.getProfile();
+
+
+    if (
+      !profile ||
+      !profile.userId
+    ) {
+
+      throw new Error(
+        "無法取得 LINE User ID"
+      );
+    }
+
+
+    user_id =
+      profile.userId;
+
+
+    await loadCustomer();
+
+    await fetchHistoryPhotos();
+
+    await fetchRepairs();
+
+
+  } catch (error) {
+
+    console.error(error);
+
+
+    document.getElementById(
+      "gallery"
+    ).innerText =
+      "LINE 身份讀取失敗：" +
+      error.message;
+  }
 }
 
 
 
-// =====================================================
-// 維修日期預設今天
-// =====================================================
-
-function setTodayRepairDate() {
-
-    const input =
-        document.getElementById(
-            "repairDate"
-        );
-
-
-    if (!input.value) {
-
-        const now =
-            new Date();
-
-
-        const year =
-            now.getFullYear();
-
-
-        const month =
-            String(
-                now.getMonth() + 1
-            ).padStart(
-                2,
-                "0"
-            );
-
-
-        const day =
-            String(
-                now.getDate()
-            ).padStart(
-                2,
-                "0"
-            );
-
-
-        input.value =
-            year +
-            "-" +
-            month +
-            "-" +
-            day;
-
-    }
-
-}
-
-
-
-// =====================================================
+// ======================================================
 // 讀取客戶資料
-// =====================================================
+// ======================================================
 
 async function loadCustomer() {
 
-    try {
+  try {
 
-        const response =
-            await fetch(
+    const response =
+      await fetch(
 
-                GOOGLE_API_URL +
-                "?action=getCustomer&userId=" +
-                encodeURIComponent(
-                    user_id
-                )
+        GOOGLE_API_URL +
+        "?action=getCustomer" +
+        "&userId=" +
+        encodeURIComponent(
+          user_id
+        )
 
-            );
-
-
-        const data =
-            await response.json();
+      );
 
 
-        console.log(
-            "Customer:",
-            data
-        );
+    const data =
+      await response.json();
 
 
-        if (
-            data.status ===
-                "success" &&
-            data.customer
-        ) {
+    if (
+      data.status ===
+      "success" &&
+      data.customer
+    ) {
 
-            document.getElementById(
-                "customerName"
-            ).value =
-                data.customer.name ||
-                "";
-
-
-            document.getElementById(
-                "phone"
-            ).value =
-                data.customer.phone ||
-                "";
+      document.getElementById(
+        "customerName"
+      ).value =
+        data.customer.name || "";
 
 
-            document.getElementById(
-                "address"
-            ).value =
-                data.customer.address ||
-                "";
+      document.getElementById(
+        "phone"
+      ).value =
+        data.customer.phone || "";
 
 
-            document.getElementById(
-                "model"
-            ).value =
-                data.customer.model ||
-                "";
+      document.getElementById(
+        "address"
+      ).value =
+        data.customer.address || "";
 
 
-            document.getElementById(
-                "installDate"
-            ).value =
-                data.customer.installDate ||
-                "";
-
-        }
+      document.getElementById(
+        "model"
+      ).value =
+        data.customer.model || "";
 
 
-    } catch (error) {
-
-        console.error(
-            "載入客戶資料失敗:",
-            error
-        );
-
+      document.getElementById(
+        "installDate"
+      ).value =
+        data.customer.installDate || "";
     }
 
+
+  } catch (error) {
+
+    console.error(
+      "載入客戶資料失敗",
+      error
+    );
+  }
 }
 
 
 
-// =====================================================
-// 儲存客戶資料
-// =====================================================
+// ======================================================
+// 儲存客戶
+// ======================================================
 
 async function saveCustomer() {
 
-    if (!user_id) {
+  if (!user_id) {
 
-        alert(
-            "尚未取得 LINE 身份，請重新整理。"
-        );
+    alert(
+      "尚未取得 LINE 身份"
+    );
 
-        return;
+    return;
+  }
 
-    }
 
+  const name =
+    document.getElementById(
+      "customerName"
+    ).value.trim();
 
-    const name =
-        document.getElementById(
-            "customerName"
-        ).value.trim();
 
+  if (!name) {
 
-    const phone =
-        document.getElementById(
-            "phone"
-        ).value.trim();
+    alert(
+      "請輸入姓名"
+    );
 
+    return;
+  }
 
-    const address =
-        document.getElementById(
-            "address"
-        ).value.trim();
 
-
-    const model =
-        document.getElementById(
-            "model"
-        ).value.trim();
-
-
-    const installDate =
-        document.getElementById(
-            "installDate"
-        ).value;
-
-
-    if (!name) {
-
-        alert(
-            "請輸入姓名"
-        );
-
-        return;
-
-    }
-
-
-    const btn =
-        document.getElementById(
-            "saveCustomerBtn"
-        );
-
-
-    btn.disabled =
-        true;
-
-
-    btn.innerText =
-        "儲存中...";
-
-
-    try {
-
-        const payload = {
-
-            action:
-                "saveCustomer",
-
-            userId:
-                user_id,
-
-            name:
-                name,
-
-            phone:
-                phone,
-
-            address:
-                address,
-
-            model:
-                model,
-
-            installDate:
-                installDate
-
-        };
-
-
-        const response =
-            await fetch(
-
-                GOOGLE_API_URL,
-
-                {
-
-                    method:
-                        "POST",
-
-                    headers: {
-
-                        "Content-Type":
-                            "text/plain;charset=utf-8"
-
-                    },
-
-                    body:
-                        JSON.stringify(
-                            payload
-                        )
-
-                }
-
-            );
-
-
-        const data =
-            await response.json();
-
-
-        if (
-            data.status ===
-            "success"
-        ) {
-
-            alert(
-                "客戶資料已成功儲存！"
-            );
-
-        } else {
-
-            alert(
-                "儲存失敗：" +
-                (
-                    data.message ||
-                    ""
-                )
-            );
-
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            error
-        );
-
-
-        alert(
-            "無法連線到伺服器"
-        );
-
-
-    } finally {
-
-        btn.disabled =
-            false;
-
-
-        btn.innerText =
-            "儲存客戶資料";
-
-    }
-
-}
-
-
-
-// =====================================================
-// 讀取維修歷史
-// =====================================================
-
-async function fetchRepairHistory() {
-
-    const container =
-        document.getElementById(
-            "repairHistory"
-        );
-
-
-    if (!user_id) {
-
-        container.innerText =
-            "尚未取得 LINE 身份";
-
-        return;
-
-    }
-
-
-    try {
-
-        container.innerText =
-            "正在讀取維修紀錄...";
-
-
-        const response =
-            await fetch(
-
-                GOOGLE_API_URL +
-                "?action=getRepairs&userId=" +
-                encodeURIComponent(
-                    user_id
-                )
-
-            );
-
-
-        const data =
-            await response.json();
-
-
-        console.log(
-            "Repair History:",
-            data
-        );
-
-
-        container.innerHTML =
-            "";
-
-
-        if (
-            !data ||
-            data.status !==
-                "success" ||
-            !data.repairs ||
-            data.repairs.length === 0
-        ) {
-
-            container.innerHTML =
-                '<div class="no-repair">' +
-                '尚無維修歷史紀錄' +
-                '</div>';
-
-            return;
-
-        }
-
-
-        data.repairs.forEach(
-            function(repair) {
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                card.className =
-                    "repair-card";
-
-
-                // --------------------------------------
-                // 維修日期
-                // --------------------------------------
-
-                const date =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                date.className =
-                    "repair-date";
-
-
-                date.innerText =
-                    "維修日期：" +
-                    (
-                        repair.repairDate ||
-                        ""
-                    );
-
-
-                card.appendChild(
-                    date
-                );
-
-
-                // --------------------------------------
-                // 維修內容
-                // --------------------------------------
-
-                if (repair.content) {
-
-                    const row =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    row.className =
-                        "repair-row";
-
-
-                    const label =
-                        document.createElement(
-                            "span"
-                        );
-
-
-                    label.className =
-                        "repair-label";
-
-
-                    label.innerText =
-                        "維修內容：";
-
-
-                    row.appendChild(
-                        label
-                    );
-
-
-                    row.appendChild(
-                        document.createTextNode(
-                            " " +
-                            repair.content
-                        )
-                    );
-
-
-                    card.appendChild(
-                        row
-                    );
-
-                }
-
-
-                // --------------------------------------
-                // 維修人員
-                // --------------------------------------
-
-                if (
-                    repair.technician
-                ) {
-
-                    const row =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    row.className =
-                        "repair-row";
-
-
-                    const label =
-                        document.createElement(
-                            "span"
-                        );
-
-
-                    label.className =
-                        "repair-label";
-
-
-                    label.innerText =
-                        "維修人員：";
-
-
-                    row.appendChild(
-                        label
-                    );
-
-
-                    row.appendChild(
-                        document.createTextNode(
-                            " " +
-                            repair.technician
-                        )
-                    );
-
-
-                    card.appendChild(
-                        row
-                    );
-
-                }
-
-
-                // --------------------------------------
-                // 備註
-                // --------------------------------------
-
-                if (repair.note) {
-
-                    const row =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    row.className =
-                        "repair-row";
-
-
-                    const label =
-                        document.createElement(
-                            "span"
-                        );
-
-
-                    label.className =
-                        "repair-label";
-
-
-                    label.innerText =
-                        "備註：";
-
-
-                    row.appendChild(
-                        label
-                    );
-
-
-                    row.appendChild(
-                        document.createTextNode(
-                            " " +
-                            repair.note
-                        )
-                    );
-
-
-                    card.appendChild(
-                        row
-                    );
-
-                }
-
-
-                container.appendChild(
-                    card
-                );
-
-            }
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "讀取維修紀錄失敗:",
-            error
-        );
-
-
-        container.innerHTML =
-            '<div class="no-repair">' +
-            '無法載入維修紀錄' +
-            '</div>';
-
-    }
-
-}
-
-
-
-// =====================================================
-// 儲存維修紀錄
-// =====================================================
-
-async function saveRepair() {
-
-    if (!user_id) {
-
-        alert(
-            "尚未取得 LINE 身份，請重新整理。"
-        );
-
-        return;
-
-    }
-
-
-    const repairDate =
-        document.getElementById(
-            "repairDate"
-        ).value;
-
-
-    const content =
-        document.getElementById(
-            "repairContent"
-        ).value.trim();
-
-
-    const technician =
-        document.getElementById(
-            "technician"
-        ).value.trim();
-
-
-    const note =
-        document.getElementById(
-            "repairNote"
-        ).value.trim();
-
-
-    if (!repairDate) {
-
-        alert(
-            "請輸入維修日期"
-        );
-
-        return;
-
-    }
-
-
-    if (!content) {
-
-        alert(
-            "請輸入維修內容"
-        );
-
-        return;
-
-    }
-
-
-    const btn =
-        document.getElementById(
-            "saveRepairBtn"
-        );
-
-
-    btn.disabled =
-        true;
-
-
-    btn.innerText =
-        "儲存中...";
-
-
-    try {
-
-        const payload = {
-
-            action:
-                "saveRepair",
-
-            userId:
-                user_id,
-
-            repairDate:
-                repairDate,
-
-            content:
-                content,
-
-            technician:
-                technician,
-
-            note:
-                note
-
-        };
-
-
-        const response =
-            await fetch(
-
-                GOOGLE_API_URL,
-
-                {
-
-                    method:
-                        "POST",
-
-                    headers: {
-
-                        "Content-Type":
-                            "text/plain;charset=utf-8"
-
-                    },
-
-                    body:
-                        JSON.stringify(
-                            payload
-                        )
-
-                }
-
-            );
-
-
-        const data =
-            await response.json();
-
-
-        if (
-            data.status ===
-            "success"
-        ) {
-
-            alert(
-                "維修紀錄已成功儲存！"
-            );
-
-
-            // ------------------------------------------
-            // 清空輸入
-            // ------------------------------------------
-
-            document.getElementById(
-                "repairContent"
-            ).value =
-                "";
-
-
-            document.getElementById(
-                "technician"
-            ).value =
-                "";
-
-
-            document.getElementById(
-                "repairNote"
-            ).value =
-                "";
-
-
-            // ------------------------------------------
-            // 重新載入維修歷史
-            // ------------------------------------------
-
-            await fetchRepairHistory();
-
-
-        } else {
-
-            alert(
-                "儲存失敗：" +
-                (
-                    data.message ||
-                    ""
-                )
-            );
-
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "儲存維修紀錄失敗:",
-            error
-        );
-
-
-        alert(
-            "無法連線到伺服器"
-        );
-
-
-    } finally {
-
-        btn.disabled =
-            false;
-
-
-        btn.innerText =
-            "儲存維修紀錄";
-
-    }
-
-}
-
-
-
-// =====================================================
-// 讀取歷史照片
-// =====================================================
-
-async function fetchHistoryPhotos(
-    uid
-) {
-
-    const gallery =
-        document.getElementById(
-            "gallery"
-        );
-
-
-    try {
-
-        const response =
-            await fetch(
-
-                GOOGLE_API_URL +
-                "?action=getPhotos&userId=" +
-                encodeURIComponent(
-                    uid
-                )
-
-            );
-
-
-        const data =
-            await response.json();
-
-
-        gallery.innerHTML =
-            "";
-
-
-        if (
-            !data ||
-            data.length === 0
-        ) {
-
-            gallery.innerText =
-                "尚無歷史照片紀錄";
-
-            return;
-
-        }
-
-
-        data.forEach(
-            function(url) {
-
-                const img =
-                    document.createElement(
-                        "img"
-                    );
-
-
-                img.src =
-                    url;
-
-
-                img.loading =
-                    "lazy";
-
-
-                gallery.appendChild(
-                    img
-                );
-
-            }
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "讀取照片失敗:",
-            error
-        );
-
-
-        gallery.innerText =
-            "無法載入雲端相簿紀錄";
-
-    }
-
-}
-
-
-
-// =====================================================
-// 上傳照片
-// =====================================================
-
-function uploadPhoto() {
-
-    const fileInput =
-        document.getElementById(
-            "fileInput"
-        );
-
-
-    if (
-        fileInput.files.length === 0
-    ) {
-
-        alert(
-            "請先選擇照片"
-        );
-
-        return;
-
-    }
-
-
-    if (!user_id) {
-
-        alert(
-            "尚未讀取到您的 LINE 帳號身份，請重新整理網頁"
-        );
-
-        return;
-
-    }
-
-
-    const file =
-        fileInput.files[0];
-
-
-    // -----------------------------------------------
-    // 限制 10MB
-    // -----------------------------------------------
-
-    if (
-        file.size >
-        10 * 1024 * 1024
-    ) {
-
-        alert(
-            "照片不能超過 10MB"
-        );
-
-        return;
-
-    }
-
-
-    const btn =
-        document.getElementById(
-            "uploadBtn"
-        );
-
-
-    btn.innerText =
-        "照片上傳中...";
-
-
-    btn.disabled =
-        true;
-
-
-    const reader =
-        new FileReader();
-
-
-    reader.readAsDataURL(
-        file
+  const btn =
+    document.getElementById(
+      "saveCustomerBtn"
     );
 
 
-    reader.onload =
-        function() {
+  btn.disabled = true;
 
-            try {
-
-                const base64Parts =
-                    reader.result.split(
-                        ","
-                    );
+  btn.innerText =
+    "儲存中...";
 
 
-                const base64String =
-                    base64Parts[1];
+  try {
+
+    const payload = {
+
+      action:
+        "saveCustomer",
+
+      userId:
+        user_id,
+
+      name:
+        name,
+
+      phone:
+        document.getElementById(
+          "phone"
+        ).value.trim(),
+
+      address:
+        document.getElementById(
+          "address"
+        ).value.trim(),
+
+      model:
+        document.getElementById(
+          "model"
+        ).value.trim(),
+
+      installDate:
+        document.getElementById(
+          "installDate"
+        ).value
+
+    };
 
 
-                const payload = {
+    const response =
+      await fetch(
 
-                    action:
-                        "upload",
+        GOOGLE_API_URL,
 
-                    userId:
-                        user_id,
+        {
 
-                    filename:
-                        file.name,
+          method:
+            "POST",
 
-                    mimeType:
-                        file.type,
+          headers: {
 
-                    data:
-                        base64String
+            "Content-Type":
+              "text/plain;charset=utf-8"
 
-                };
+          },
 
-
-                fetch(
-
-                    GOOGLE_API_URL,
-
-                    {
-
-                        method:
-                            "POST",
-
-                        headers: {
-
-                            "Content-Type":
-                                "text/plain;charset=utf-8"
-
-                        },
-
-                        body:
-                            JSON.stringify(
-                                payload
-                            )
-
-                    }
-
-                )
-
-                .then(
-                    response =>
-                        response.json()
-                )
-
-                .then(
-                    function(data) {
-
-                        if (
-                            data.status ===
-                            "success"
-                        ) {
-
-                            alert(
-                                "上傳成功！"
-                            );
+          body:
+            JSON.stringify(
+              payload
+            )
+        }
+      );
 
 
-                            // --------------------------------
-                            // 重新載入照片
-                            // --------------------------------
-
-                            fetchHistoryPhotos(
-                                user_id
-                            );
+    const data =
+      await response.json();
 
 
-                            fileInput.value =
-                                "";
+    if (
+      data.status ===
+      "success"
+    ) {
 
-                        } else {
+      alert(
+        "客戶資料已成功儲存！"
+      );
 
-                            alert(
-                                "上傳失敗：" +
-                                (
-                                    data.message ||
-                                    ""
-                                )
-                            );
+    } else {
 
-                        }
-
-
-                        resetUploadButton();
-
-                    }
-
-                )
-
-                .catch(
-                    function(error) {
-
-                        console.error(
-                            error
-                        );
+      alert(
+        data.message ||
+        "儲存失敗"
+      );
+    }
 
 
-                        alert(
-                            "照片上傳失敗，請確認網路及 GAS 部署設定。"
-                        );
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "無法連線到伺服器"
+    );
 
 
-                        resetUploadButton();
+  } finally {
 
-                    }
-                );
+    btn.disabled = false;
 
-
-            } catch (error) {
-
-                console.error(
-                    error
-                );
-
-
-                resetUploadButton();
-
-            }
-
-        };
-
-
-    reader.onerror =
-        function() {
-
-            alert(
-                "照片讀取失敗"
-            );
-
-
-            resetUploadButton();
-
-        };
-
+    btn.innerText =
+      "儲存客戶資料";
+  }
 }
 
 
 
-// =====================================================
-// 重設照片上傳按鈕
-// =====================================================
+// ======================================================
+// 讀取照片
+// ======================================================
 
-function resetUploadButton() {
+async function fetchHistoryPhotos() {
 
-    const btn =
-        document.getElementById(
-            "uploadBtn"
+  const gallery =
+    document.getElementById(
+      "gallery"
+    );
+
+
+  try {
+
+    const response =
+      await fetch(
+
+        GOOGLE_API_URL +
+        "?action=getPhotos" +
+        "&userId=" +
+        encodeURIComponent(
+          user_id
+        )
+
+      );
+
+
+    const data =
+      await response.json();
+
+
+    gallery.innerHTML = "";
+
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      gallery.innerText =
+        "尚無歷史照片";
+
+      return;
+    }
+
+
+    data.forEach(
+      function(photo) {
+
+        const img =
+          document.createElement(
+            "img"
+          );
+
+
+        img.src =
+          photo.url;
+
+
+        img.loading =
+          "lazy";
+
+
+        gallery.appendChild(
+          img
+        );
+
+      }
+    );
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    gallery.innerText =
+      "無法載入照片";
+  }
+}
+
+
+
+// ======================================================
+// 上傳照片
+// ======================================================
+
+function uploadPhoto() {
+
+  const fileInput =
+    document.getElementById(
+      "fileInput"
+    );
+
+
+  if (
+    fileInput.files.length === 0
+  ) {
+
+    alert(
+      "請先選擇照片"
+    );
+
+    return;
+  }
+
+
+  if (!user_id) {
+
+    alert(
+      "尚未取得 LINE 身份"
+    );
+
+    return;
+  }
+
+
+  const file =
+    fileInput.files[0];
+
+
+  if (
+    file.size >
+    10 * 1024 * 1024
+  ) {
+
+    alert(
+      "照片不能超過 10MB"
+    );
+
+    return;
+  }
+
+
+  const btn =
+    document.getElementById(
+      "uploadBtn"
+    );
+
+
+  btn.disabled = true;
+
+  btn.innerText =
+    "照片上傳中...";
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.readAsDataURL(
+    file
+  );
+
+
+  reader.onload =
+    async function() {
+
+      try {
+
+        const base64 =
+          reader.result
+            .split(",")[1];
+
+
+        const payload = {
+
+          action:
+            "upload",
+
+          userId:
+            user_id,
+
+          filename:
+            file.name,
+
+          mimeType:
+            file.type,
+
+          data:
+            base64
+        };
+
+
+        const response =
+          await fetch(
+
+            GOOGLE_API_URL,
+
+            {
+
+              method:
+                "POST",
+
+              headers: {
+
+                "Content-Type":
+                  "text/plain;charset=utf-8"
+
+              },
+
+              body:
+                JSON.stringify(
+                  payload
+                )
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        if (
+          data.status ===
+          "success"
+        ) {
+
+          alert(
+            "照片上傳成功！"
+          );
+
+
+          fileInput.value =
+            "";
+
+
+          await fetchHistoryPhotos();
+
+
+        } else {
+
+          alert(
+            data.message ||
+            "上傳失敗"
+          );
+        }
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "照片上傳失敗"
         );
 
 
-    btn.innerText =
-        "確認上傳照片";
+      } finally {
 
+        btn.disabled =
+          false;
 
-    btn.disabled =
-        false;
-
+        btn.innerText =
+          "確認上傳照片";
+      }
+    };
 }
 
 
 
-// =====================================================
+// ======================================================
+// 讀取維修歷史
+// ======================================================
+
+async function fetchRepairs() {
+
+  const container =
+    document.getElementById(
+      "repairHistory"
+    );
+
+
+  try {
+
+    const response =
+      await fetch(
+
+        GOOGLE_API_URL +
+        "?action=getRepairs" +
+        "&userId=" +
+        encodeURIComponent(
+          user_id
+        )
+
+      );
+
+
+    const data =
+      await response.json();
+
+
+    container.innerHTML =
+      "";
+
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      container.innerText =
+        "尚無維修紀錄";
+
+      return;
+    }
+
+
+    data.forEach(
+      function(repair) {
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+
+        card.className =
+          "repair-card";
+
+
+        card.innerHTML =
+
+          "<div class='repair-date'>" +
+          escapeHtml(
+            repair.repairDate
+          ) +
+          "</div>" +
+
+          "<div class='repair-item'>" +
+          escapeHtml(
+            repair.type
+          ) +
+          "</div>" +
+
+          "<div class='repair-content'>" +
+          escapeHtml(
+            repair.description
+          ) +
+          "</div>" +
+
+          (
+            repair.technician
+              ? "<div>技師：" +
+                escapeHtml(
+                  repair.technician
+                ) +
+                "</div>"
+              : ""
+          ) +
+
+          (
+            repair.cost
+              ? "<div>費用：" +
+                escapeHtml(
+                  repair.cost
+                ) +
+                "</div>"
+              : ""
+          ) +
+
+          (
+            repair.note
+              ? "<div>備註：" +
+                escapeHtml(
+                  repair.note
+                ) +
+                "</div>"
+              : ""
+          );
+
+
+        container.appendChild(
+          card
+        );
+
+      }
+    );
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    container.innerText =
+      "無法載入維修紀錄";
+  }
+}
+
+
+
+// ======================================================
+// 新增維修紀錄
+// ======================================================
+
+async function addRepair() {
+
+  if (!user_id) {
+
+    alert(
+      "尚未取得 LINE 身份"
+    );
+
+    return;
+  }
+
+
+  const repairDate =
+    document.getElementById(
+      "repairDate"
+    ).value;
+
+
+  const type =
+    document.getElementById(
+      "repairType"
+    ).value.trim();
+
+
+  const description =
+    document.getElementById(
+      "repairDescription"
+    ).value.trim();
+
+
+  const technician =
+    document.getElementById(
+      "repairTechnician"
+    ).value.trim();
+
+
+  const cost =
+    document.getElementById(
+      "repairCost"
+    ).value.trim();
+
+
+  const note =
+    document.getElementById(
+      "repairNote"
+    ).value.trim();
+
+
+  if (!repairDate) {
+
+    alert(
+      "請選擇維修日期"
+    );
+
+    return;
+  }
+
+
+  if (!type) {
+
+    alert(
+      "請輸入維修項目"
+    );
+
+    return;
+  }
+
+
+  const btn =
+    document.getElementById(
+      "repairBtn"
+    );
+
+
+  btn.disabled = true;
+
+  btn.innerText =
+    "儲存中...";
+
+
+  try {
+
+    const payload = {
+
+      action:
+        "addRepair",
+
+      userId:
+        user_id,
+
+      repairDate:
+        repairDate,
+
+      type:
+        type,
+
+      description:
+        description,
+
+      technician:
+        technician,
+
+      cost:
+        cost,
+
+      note:
+        note
+    };
+
+
+    const response =
+      await fetch(
+
+        GOOGLE_API_URL,
+
+        {
+
+          method:
+            "POST",
+
+          headers: {
+
+            "Content-Type":
+              "text/plain;charset=utf-8"
+
+          },
+
+          body:
+            JSON.stringify(
+              payload
+            )
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if (
+      data.status ===
+      "success"
+    ) {
+
+      alert(
+        "維修紀錄已新增！"
+      );
+
+
+      document.getElementById(
+        "repairType"
+      ).value = "";
+
+
+      document.getElementById(
+        "repairDescription"
+      ).value = "";
+
+
+      document.getElementById(
+        "repairTechnician"
+      ).value = "";
+
+
+      document.getElementById(
+        "repairCost"
+      ).value = "";
+
+
+      document.getElementById(
+        "repairNote"
+      ).value = "";
+
+
+      await fetchRepairs();
+
+
+    } else {
+
+      alert(
+        data.message ||
+        "新增失敗"
+      );
+    }
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "無法連線到伺服器"
+    );
+
+
+  } finally {
+
+    btn.disabled = false;
+
+    btn.innerText =
+      "新增維修紀錄";
+  }
+}
+
+
+
+// ======================================================
+// HTML 安全處理
+// ======================================================
+
+function escapeHtml(value) {
+
+  return String(
+    value || ""
+  )
+
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+
+  .replace(
+    /</g,
+    "&lt;"
+  )
+
+  .replace(
+    />/g,
+    "&gt;"
+  )
+
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+}
+
+
+
+// ======================================================
 // 啟動
-// =====================================================
+// ======================================================
 
 initLIFF();
 
